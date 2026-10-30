@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.png"><title>Sign up – BarangayEcoCare</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="auth">
+  <section class="auth-brand">
+    <a href="index.html" class="logo"><img src="logo.png" alt="" width="40" height="40">Barangay<b>EcoCare</b></a>
+    <span class="tag">CLEAN BARANGAY · GREEN FUTURE</span>
+    <h1>Together for a cleaner, greener, healthier barangay</h1>
+    <p class="lead">Segregate waste properly, report concerns, and earn rewards while your barangay keeps track of the progress.</p>
+    <ul class="perks">
+      <li><span class="ico">🗑</span>Report waste concerns</li>
+      <li><span class="ico">🍃</span>Segregate properly</li>
+      <li><span class="ico">★</span>Earn rewards</li>
+      <li><span class="ico">ıl</span>Monitor progress</li>
+    </ul>
+    <p class="quote">Small actions make a big impact.</p>
+    <div class="hills"></div>
+  </section>
+
+  <section class="auth-panel">
+    <form class="auth-card" action="#" method="post">
+      <h2>Create your account</h2>
+      <p class="sub">Join your barangay in keeping it clean and green.</p>
+     
+      <input type="hidden" name="role" value="resident">
+
+      <div class="field-row">
+        <label class="field"><input type="text" name="first" placeholder="First name" autocomplete="given-name" required></label>
+        <label class="field"><input type="text" name="last" placeholder="Last name" autocomplete="family-name" required></label>
+      </div>
+      <label class="field"><input type="email" name="email" placeholder="Email" autocomplete="email" required></label>
+      <label class="field"><input type="tel" name="mobile" placeholder="Mobile number (09XX XXX XXXX)" pattern="09[0-9\s]{9,12}" autocomplete="tel" required></label>
+      <label class="field"><input type="text" name="address" placeholder="Purok / Address" required></label>
+      <label class="field"><input type="password" name="password" placeholder="Password (at least 8 characters)" minlength="8" autocomplete="new-password" required></label>
+      <label class="field"><input type="password" name="confirm" placeholder="Confirm password" minlength="8" autocomplete="new-password" required></label>
+
+      <label class="check" style="margin-bottom:18px"><input type="checkbox" required> I agree to the Terms and Privacy Policy</label>
+      <button class="btn btn-blue btn-block" type="submit">Create Account</button>
+
+      <p class="switch" style="margin-top:40px">Already have an account? <a href="login.html" class="link">Log in</a></p>
+      
+    </form>
+  </section>
+</div>
+</body>
+</html>

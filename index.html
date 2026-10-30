@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.png"><title>BarangayEcoCare – Clean Barangay, Green Future</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- HEADER: the checkbox powers the mobile menu without JavaScript -->
+<header class="site-header">
+  <div class="wrap">
+    <a href="#top" class="logo"><img src="logo.png" alt="" width="40" height="40">Barangay<b>EcoCare</b></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+    <label for="nav-toggle" class="nav-burger" aria-hidden="true">☰</label>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#top">Home</a><a href="#features">Features</a><a href="#schedule">Schedule</a>
+      <a href="#rewards">Rewards</a><a href="#leaderboard">Leaderboard</a>
+      <a href="#how">How it works</a><a href="#roles">Who it's for</a>
+      <a href="login.html" class="btn btn-primary btn-sm">Log In</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Together for a cleaner, greener, healthier barangay</h1>
+        <p class="lead">BarangayEcoCare is a digital platform that connects our community in keeping the barangay clean and green through proper waste segregation, reporting, monitoring, and rewards.</p>
+        <div class="actions">
+          <a href="signup.html" class="btn btn-primary">Get started</a>
+          <a href="#how" class="btn">See how it works</a>
+        </div>
+      </div>
+      <aside class="overview" aria-label="Sample overview">
+        <div class="overview-head"><strong>Barangay overview</strong><span class="muted">Sample data</span></div>
+        <div class="overview-stats"><div><b>128</b>Reports</div><div><b>94</b>Resolved</div></div>
+        <ul>
+          <li>Overflowing bin, Purok 3 <span class="badge b-pending">Pending</span></li>
+          <li>Illegal dumping, Riverside <span class="badge b-progress">In Progress</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="features">
+    <div class="wrap">
+      <h2>Everything your barangay needs to keep clean</h2>
+      <p class="sub">One platform for residents and officials to report, act, and track progress together.</p>
+      <div class="grid g4">
+        <article class="card"><div class="ico">🗑</div><h3>Report incidents</h3><p class="muted">Report illegal dumping, uncollected garbage, or overflowing bins with photos and location.</p></article>
+        <article class="card"><div class="ico">▦</div><h3>Collection schedules</h3><p class="muted">Check waste collection schedules for your zone or purok, logged by barangay staff.</p></article>
+        <article class="card"><div class="ico">★</div><h3>Earn and redeem rewards</h3><p class="muted">Earn points for verified segregation and redeem them for barangay incentives.</p></article>
+        <article class="card"><div class="ico">ıl</div><h3>Monitor progress</h3><p class="muted">Track reports and purok segregation compliance with basic analytics.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section class="section alt" id="schedule">
+    <div class="wrap">
+      <h2>Waste collection schedule</h2>
+      <p class="sub">Know when collection comes to your zone. Barangay staff log each completed route.</p>
+      <div class="grid g3">
+        <article class="card"><span class="eyebrow">Zone 1</span><h3>Purok 1 to 3</h3><p class="muted">Mon and Thu · 6:00 AM</p></article>
+        <article class="card"><span class="eyebrow">Zone 2</span><h3>Purok 4 to 6</h3><p class="muted">Tue and Fri · 6:00 AM</p></article>
+        <article class="card"><span class="eyebrow">Zone 3</span><h3>Purok 7 to 9</h3><p class="muted">Wed and Sat · 6:00 AM</p></article>
+      </div>
+      <p class="note">Sample schedule. Actual days and times are set by the barangay.</p>
+    </div>
+  </section>
+
+  <!-- REWARDS -->
+  <section class="section" id="rewards">
+    <div class="wrap">
+      <h2>Redeem your points</h2>
+      <p class="sub">Points are awarded after proper segregation or recycling is verified. Redeem them for incentives provided by the barangay. Puroks that hit the segregation target can earn community points for every qualified resident. Verified reports of illegal dumping or overflowing garbage earn points too.</p>
+      <div class="grid g3">
+        <article class="card"><div class="ico">🛒</div><h3>Grocery pack</h3><p class="price">500 points</p></article>
+        <article class="card"><div class="ico">👜</div><h3>Reusable eco bag</h3><p class="price">200 points</p></article>
+        <article class="card"><div class="ico">🌱</div><h3>Seedling kit</h3><p class="price">150 points</p></article>
+      </div>
+      <p class="note">Sample incentives. Rewards are point-based only, with no cash or e-wallet transfers.</p>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section class="section alt center" id="leaderboard">
+    <div class="wrap">
+      <h2>Top 3 outstanding puroks</h2>
+      <p class="sub">October 2026 · ranked by cleanliness and segregation compliance rate within the barangay.</p>
+      <div class="podium">
+        <article class="card"><div class="rank">2</div><h3>Purok 2</h3><div class="pct">89%</div><small class="muted">segregation compliance</small>
+          <div class="bar" style="margin-top:12px"><i style="width:88%"></i></div><div class="meta"><span>Cleanliness 88%</span><span>41 resolved</span></div></article>
+        <article class="card first"><div class="rank">1</div><h3>Purok 5</h3><div class="pct">94%</div><small class="muted">segregation compliance</small>
+          <div class="bar" style="margin-top:12px"><i style="width:92%"></i></div><div class="meta"><span>Cleanliness 92%</span><span>52 resolved</span></div></article>
+        <article class="card"><div class="rank r3">3</div><h3>Purok 7</h3><div class="pct">85%</div><small class="muted">segregation compliance</small>
+          <div class="bar" style="margin-top:12px"><i style="width:86%"></i></div><div class="meta"><span>Cleanliness 86%</span><span>37 resolved</span></div></article>
+      </div>
+      <p class="note">Sample data. Rankings will update from real purok activity.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <p class="sub">From a single report to a cleaner community.</p>
+      <ol class="grid g4 steps" style="list-style:none;padding:0;margin:0">
+        <li><span class="eyebrow">Step 1</span><h3>Report an issue</h3><p>Submit a waste concern with a photo and location details.</p></li>
+        <li><span class="eyebrow">Step 2</span><h3>Track the ticket</h3><p>Follow the status: Pending, In Progress, or Resolved.</p></li>
+        <li><span class="eyebrow">Step 3</span><h3>Segregate and earn</h3><p>Earn points once proper segregation or recycling is verified.</p></li>
+        <li><span class="eyebrow">Step 4</span><h3>Redeem rewards</h3><p>Exchange your points for incentives provided by the barangay.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="section alt" id="roles">
+    <div class="wrap">
+      <h2>Built for every role</h2>
+      <p class="sub">Residents sign up on their own. Other roles are set up by the barangay administrator.</p>
+      <div class="grid g4">
+        <article class="card"><div class="ico">👤</div><h3>Resident</h3><p class="muted">Sign up publicly, report waste concerns, track tickets, and earn points.</p></article>
+        <article class="card"><div class="ico">🚛</div><h3>Garbage Collector</h3><p class="muted">See assigned collection schedules, areas, and collection tasks.</p></article>
+        <article class="card"><div class="ico">🛡</div><h3>Barangay Staff</h3><p class="muted">Manage waste reports, collection schedules, and resident concerns based on permissions.</p></article>
+        <article class="card"><div class="ico">🏛</div><h3>Administrator</h3><p class="muted">Manage accounts, roles, system settings, and overall portal operations.</p></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span class="logo">Barangay<b>EcoCare</b></span>
+  <p>Clean Barangay · Green Future</p>
+  <p style="margin-top:22px">© 2026 BarangayEcoCare. All rights reserved.</p>
+</footer>
+</body>
+</html>

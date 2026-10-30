@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.png"><title>Resident dashboard – BarangayEcoCare</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div><a href="index.html" class="logo"><img src="logo.png" alt="" width="40" height="40">Barangay<b>EcoCare</b></a></div>
+    <nav class="nav" aria-label="Dashboard" style="margin-top:20px">
+      <a href="#v1" data-i="⌂">Dashboard</a>
+      <a href="#v2" data-i="⚲">Report Waste Problem</a>
+      <a href="#v3" data-i="🏘">Purok Performance</a>
+      <a href="#v4" data-i="🏅">My Points &amp; Badges</a>
+      <a href="#v5" data-i="★">Rewards</a>
+      <a href="#v6" data-i="▦">Schedule</a>
+      <a href="#v7" data-i="👤">Profile</a>
+    </nav>
+    <div class="me">
+      <div class="me-info"><span class="avatar">J</span><div>Juan Dela Cruz<small>Resident · Purok 5</small></div></div>
+      <a href="login.html" class="btn">Log out</a>
+    </div>
+  </aside>
+
+  <main class="main"><div class="views">
+
+    <!-- 1. HOME -->
+    <section class="view" id="v1">
+      <h1>Good day, Juan</h1>
+      <p class="sub">Here is how your barangay is doing today.</p>
+
+      <article class="card" style="margin-bottom:var(--gap)">
+        <h2>Alerts</h2>
+        <ul class="rows">
+          <li><div><strong>Next collection: Fri, 6:00 AM</strong><small>Zone 2 · Purok 5. Put your segregated waste out before 6:00 AM.</small></div></li>
+          <li><div><strong>Your report is being handled</strong><small>Illegal dumping · Riverside, Purok 5</small></div></li>
+          <li><div><strong>Report resolved</strong><small>Overflowing garbage · Purok 5, near the chapel</small></div></li>
+          <li><div><strong>+15 points added</strong><small>Community reward, Purok 5 · 1st place (Sep 28 to Oct 4)</small></div></li>
+        </ul>
+        <button class="btn btn-sm" style="margin-top:20px">Turn on phone reminders</button>
+      </article>
+
+      <div class="grid split" style="margin-bottom:var(--gap)">
+        <article class="card points-hero">
+          <div class="ring" style="--p:14"><div><b>70</b><small>points</small></div></div>
+          <div><span class="chip">Eco Helper</span><h2>430 points to a grocery pack</h2><p class="muted">Segregate properly and report problems to keep earning. <a href="#v4" class="link">How points are earned</a></p></div>
+        </article>
+        <article class="card"><p class="muted">Next collection</p><h2 class="blue" style="font-size:1.9rem;margin:4px 0">Fri, 6:00 AM</h2><p class="muted" style="margin-bottom:16px">Zone 2 · Purok 5</p><a href="#v2" class="btn btn-primary btn-block">Report an issue</a></article>
+      </div>
+
+      <div class="grid g3" style="margin-bottom:var(--gap)">
+        <div class="card mini"><b>4 weeks</b><small>Segregation streak</small></div>
+        <div class="card mini"><b>3</b><small>Reports filed</small></div>
+        <div class="card mini"><b>1</b><small>Resolved</small></div>
+      </div>
+
+      <div class="grid g2">
+        <article class="card"><h2>Recent tickets</h2>
+          <ul class="rows">
+            <li><div><strong>Overflowing garbage</strong><small>Purok 5 main road · Oct 6</small></div><span class="badge b-pending">Pending</span></li>
+            <li><div><strong>Illegal dumping</strong><small>Riverside, Purok 5 · Oct 3</small></div><span class="badge b-progress">In Progress</span></li>
+            <li><div><strong>Overflowing garbage</strong><small>Purok 5, near the chapel · Sep 28</small></div><span class="badge b-resolved">Resolved</span></li>
+          </ul></article>
+        <article class="card"><h2>Purok 5 standing</h2>
+          <p><span class="big-rank">#1</span> <span class="muted">top purok this October</span></p>
+          <div class="bar" style="margin:10px 0"><i style="width:100%"></i></div>
+          <small class="muted">100% segregation compliance · sample data</small>
+          <p class="muted" style="margin-top:12px">Community reward: 15 points for every resident once staff verify this week.</p></article>
+      </div>
+    </section>
+
+    <!-- 2. REPORT WASTE PROBLEM -->
+    <section class="view" id="v2">
+      <h1>Report a waste problem</h1>
+      <p class="sub">Send a photo report. Barangay staff verify it before any points are given.</p>
+      <div class="grid g2" style="align-items:start">
+        <form class="card" action="#">
+          <div class="field"><span>What are you reporting?</span>
+            <div class="roles" role="radiogroup" aria-label="Report type">
+              <label><input type="radio" name="type" value="dumping" required><span>Illegal dumping<small>Improper disposal of waste · 15 points</small></span></label>
+              <label><input type="radio" name="type" value="overflow"><span>Overflowing garbage<small>Full bins or uncollected waste · 15 points</small></span></label>
+            </div></div>
+          <label class="field"><span>Purok</span><select required><option>Purok 1</option><option>Purok 2</option><option>Purok 3</option><option>Purok 4</option><option selected>Purok 5</option><option>Purok 6</option><option>Purok 7</option><option>Purok 8</option><option>Purok 9</option></select></label>
+          <label class="field"><span>Location</span><input placeholder="e.g. Near the basketball court" required></label>
+          <label class="field"><span>Description</span><textarea placeholder="Describe what you saw" required></textarea></label>
+          <label class="field"><span>Photo (required)</span><input type="file" accept="image/*" required></label>
+          <p class="notice">Points are given only after staff verify a valid report. Pending or rejected reports earn nothing, and duplicate reports of the same incident are not rewarded again.</p>
+          <button class="btn btn-primary btn-block" type="submit">Send report</button>
+        </form>
+        <article class="card"><h2>My reports</h2>
+          <ul class="rows">
+            <li><div><strong>Overflowing garbage</strong><small>Purok 5 main road · Oct 6<br>Awaiting verification · 15 points if valid</small></div><span class="badge b-pending">Pending</span></li>
+            <li><div><strong>Illegal dumping</strong><small>Riverside, Purok 5 · Oct 3<br>Verified · +15 points added</small></div><span class="badge b-progress">In Progress</span></li>
+            <li><div><strong>Overflowing garbage</strong><small>Purok 5, near the chapel · Sep 28<br>Verified · +15 points added</small></div><span class="badge b-resolved">Resolved</span></li>
+          </ul></article>
+      </div>
+    </section>
+
+    <!-- 3. PUROK PERFORMANCE -->
+    <section class="view" id="v3">
+      <h1>Purok performance</h1>
+      <p class="sub">See how Purok 5 is doing and whether it earns a community reward.</p>
+      <div class="grid g3" style="margin-bottom:var(--gap)">
+        <div class="card mini"><b>100%</b><small>Segregation compliance this week</small></div>
+        <div class="card mini"><b>#1</b><small>Rank this October</small></div>
+        <div class="card mini"><b>15 pts</b><small>Community reward for each resident (1st place)</small></div>
+      </div>
+      <article class="card" style="margin-bottom:var(--gap)" id="criteria">
+        <h2>Proper segregation points: criteria overview</h2>
+        <p class="muted" style="margin:0">Points are earned by purok. When your purok is <b>perfect</b> on a collection schedule (it complies with every requirement below), <b>each resident of the purok earns +15 points</b>. The next purok closest to perfect earns <b>10 points</b> per resident, and the rest earn <b>5 points</b>.</p>
+        <div class="grid g2" style="margin-top:var(--gap);align-items:start">
+          <div>
+            <h3 style="margin:0">Requirements for a perfect purok</h3>
+            <ol style="margin:10px 0 0;padding-left:20px;line-height:1.7">
+              <li>Waste is separated into biodegradable, non-biodegradable and recyclable.</li>
+              <li>No mixed waste, for example plastics inside food waste.</li>
+              <li>Bins are covered and not overflowing.</li>
+              <li>Bins are set out on the scheduled collection day and time.</li>
+              <li>No illegal dumping found in the purok during the collection.</li>
+            </ol>
+          </div>
+          <div>
+            <h3 style="margin:0 0 4px">Points at a glance</h3>
+            <ul class="rows">
+              <li><div><strong>Perfect purok</strong><small>Per resident, per schedule</small></div><span class="plus">+15</span></li>
+              <li><div><strong>Next purok closest to perfect</strong><small>Per resident, per schedule</small></div><span class="plus">+10</span></li>
+              <li><div><strong>The rest of the puroks</strong><small>Per resident, per schedule</small></div><span class="plus">+5</span></li>
+              <li><div><strong>Illegal dumping report</strong><small>Verified photo report</small></div><span class="plus">+15</span></li>
+              <li><div><strong>Overflowing garbage report</strong><small>Verified photo report</small></div><span class="plus">+15</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+      <div class="grid g2" style="align-items:start">
+        <div class="grid">
+          <article class="card"><h2>This week · Oct 5 to 11</h2>
+            <ul class="rows">
+              <li><div><strong>Purok result</strong><small>100% compliance. Perfect segregation based on the collector's photos. 1st place.</small></div><span class="badge b-pending">Awaiting staff check</span></li>
+              <li><div><strong>Your reward</strong><small>Every resident of Purok 5 gets 15 points once staff verify.</small></div><span class="badge b-pending">+15 pending</span></li>
+            </ul>
+            <p class="muted" style="margin-top:14px">Every resident of the purok gets the community reward after authorized staff verify the purok result. 1st place earns 15, 2nd place 10, and all other puroks 5.</p></article>
+          <article class="card"><h2>Past assessments</h2>
+            <ul class="rows">
+              <li><div><strong>Sep 28 to Oct 4 · 100%</strong><small>1st place · Verified · +15 community points added</small></div><span class="badge b-done">Rewarded</span></li>
+              <li><div><strong>Sep 21 to 27 · 82%</strong><small>Other puroks · Verified · +5 community points added</small></div><span class="badge b-done">Rewarded</span></li>
+            </ul></article>
+        </div>
+        <article class="card"><h2>Compliance by purok</h2>
+          <ul class="compliance">
+            <li><div><span>Purok 5 (yours) · 15 pts each</span><b>100%</b></div><div class="bar"><i style="width:100%"></i></div></li>
+            <li><div><span>Purok 2 · 10 pts each</span><b>89%</b></div><div class="bar"><i style="width:89%"></i></div></li>
+            <li><div><span>Purok 7 · 5 pts each</span><b>85%</b></div><div class="bar"><i style="width:85%"></i></div></li>
+            <li><div><span>Purok 4 · 5 pts each</span><b>78%</b></div><div class="bar"><i style="width:78%"></i></div></li>
+            <li><div><span>Purok 1 · 5 pts each</span><b>72%</b></div><div class="bar"><i style="width:72%"></i></div></li>
+          </ul><small class="muted">Sample data</small></article>
+      </div>
+    </section>
+
+    <!-- 4. MY POINTS & BADGES -->
+    <section class="view" id="v4">
+      <h1>My points &amp; badges</h1>
+      <p class="sub">You have <b class="orange">70</b> points in total.</p>
+      <div class="grid g3" style="margin-bottom:var(--gap)">
+        <div class="card mini"><b>20</b><small>Community rewards</small></div>
+        <div class="card mini"><b>30</b><small>Verified reports</small></div>
+        <div class="card mini"><b>20</b><small>Welcome bonus</small></div>
+      </div>
+      <article class="card" style="margin-bottom:var(--gap)"><h2>How you earn points</h2>
+        <ul class="rows">
+          <li><div><strong>Welcome bonus</strong><small>Given one time, when you first sign in.</small></div><span class="plus">+20</span></li>
+          <li><div><strong>Report a waste problem</strong><small>Illegal dumping or overflowing garbage, sent with a photo. Points are added after staff verify the report.</small></div><span class="plus">+15 each</span></li>
+        </ul>
+        <h3 style="margin:22px 0 4px">Purok community reward</h3>
+        <p class="muted" style="margin:0 0 6px">Every resident of a purok gets the same points once staff verify the collector's photos for that purok. <a href="#v3" class="link">See the full criteria</a></p>
+        <ul class="rows">
+          <li><div><strong>1st place</strong><small>Purok with perfect segregation</small></div><span class="plus">+15 each</span></li>
+          <li><div><strong>2nd place</strong><small>Next purok closest to perfect</small></div><span class="plus">+10 each</span></li>
+          <li><div><strong>All other puroks</strong><small>The rest of the puroks</small></div><span class="plus">+5 each</span></li>
+        </ul>
+        <p class="notice" style="margin:16px 0 0">Pending or rejected reports earn nothing, and duplicate reports of the same incident are not rewarded again.</p></article>
+      <article class="card" style="margin-bottom:var(--gap)"><h2>Badges</h2>
+        <div class="grid g3">
+          <div class="card badge-tile locked"><div class="em">🌿</div><strong>Eco Helper</strong><small class="muted">Reach 100 points (70 of 100)</small><span class="badge b-off">Locked</span></div>
+          <div class="card badge-tile"><div class="em">📸</div><strong>First Report</strong><small class="muted">1 verified report</small><span class="badge b-done">Earned</span></div>
+          <div class="card badge-tile"><div class="em">🔥</div><strong>4-week Streak</strong><small class="muted">Segregate 4 weeks in a row</small><span class="badge b-done">Earned</span></div>
+          <div class="card badge-tile locked"><div class="em">🏘</div><strong>Community Hero</strong><small class="muted">5 community rewards (2 of 5)</small><span class="badge b-off">Locked</span></div>
+          <div class="card badge-tile locked"><div class="em">⭐</div><strong>Top Reporter</strong><small class="muted">10 verified reports (2 of 10)</small><span class="badge b-off">Locked</span></div>
+        </div><small class="muted" style="display:block;margin-top:12px">Badges and their requirements are set by the Admin.</small></article>
+      <div class="card hist"><h2>Points history</h2>
+        <ul class="rows">
+          <li><div><strong>Community reward, Purok 5 · 1st place (Sep 28 to Oct 4)</strong><small>Oct 5</small></div><span class="plus">+15</span></li>
+          <li><div><strong>Verified report: Illegal dumping</strong><small>Oct 3</small></div><span class="plus">+15</span></li>
+          <li><div><strong>Community reward, Purok 5 (Sep 21 to 27)</strong><small>Sep 30</small></div><span class="plus">+5</span></li>
+          <li><div><strong>Verified report: Overflowing garbage</strong><small>Sep 28</small></div><span class="plus">+15</span></li>
+          <li><div><strong>Welcome bonus</strong><small>Sep 16</small></div><span class="plus">+20</span></li>
+        </ul></div>
+    </section>
+
+    <!-- 3. SCHEDULE -->
+    <section class="view" id="v6">
+      <h1>Collection schedule</h1>
+      <p class="sub">Your zone is highlighted. Sample schedule; the barangay sets actual times.</p>
+      <div class="grid g3">
+        <article class="card zone"><span class="eyebrow">Zone 1</span><h3>Purok 1 to 3</h3><p style="margin:0">Mon and Thu · 6:00 AM</p></article>
+        <article class="card zone mine"><span class="eyebrow">Zone 2 · Your zone</span><h3>Purok 4 to 6</h3><p style="margin:0">Tue and Fri · 6:00 AM</p></article>
+        <article class="card zone"><span class="eyebrow">Zone 3</span><h3>Purok 7 to 9</h3><p style="margin:0">Wed and Sat · 6:00 AM</p></article>
+      </div>
+    </section>
+
+    <!-- 5. REWARDS -->
+    <section class="view" id="v5">
+      <h1>Rewards</h1>
+      <p class="sub">You have <b class="orange">70</b> points. Redeem here, then claim at the barangay hall once approved.</p>
+      <div class="grid g3" style="margin-bottom:var(--gap)">
+        <article class="card zone"><h3 style="margin:0">Grocery pack</h3><p class="price" style="margin:6px 0 16px">500 points</p><button class="btn btn-block" disabled>Need 430 more points</button></article>
+        <article class="card zone"><h3 style="margin:0">Reusable eco bag</h3><p class="price" style="margin:6px 0 16px">200 points</p><button class="btn btn-block" disabled>Need 130 more points</button></article>
+        <article class="card zone"><h3 style="margin:0">Seedling kit</h3><p class="price" style="margin:6px 0 16px">150 points</p><button class="btn btn-block" disabled>Need 80 more points</button></article>
+      </div>
+      <article class="card"><h2>My redemptions</h2>
+        <p class="muted">No redemptions yet.</p></article>
+    </section>
+
+    <!-- 5. PROFILE -->
+    <section class="view" id="v7">
+      <h1>My profile</h1>
+      <p class="sub">Update the details you gave when you created your account.</p>
+      <div class="grid g2" style="align-items:start">
+        <form class="card" action="#">
+          <h2>Account details</h2>
+          <div class="profile-head"><span class="avatar lg">J</span><button type="button" class="btn btn-sm">Add/Change photo</button><button type="button" class="btn btn-sm">Remove</button><small>JPG or PNG. It shows on your dashboard.</small></div>
+          <label class="field"><span>First name</span><input value="Juan"></label>
+          <label class="field"><span>Last name</span><input value="Dela Cruz"></label>
+          <label class="field"><span>Email</span><input type="email" value="juan.delacruz@email.com"></label>
+          <label class="field"><span>Mobile or telephone no.</span><input type="tel" value="09171234567"></label>
+          <label class="field"><span>Purok / Address</span><input value="Purok 5"></label>
+          <button class="btn btn-primary" type="submit">Save changes</button> <button class="btn" type="reset">Undo changes</button>
+        </form>
+        <form class="card" action="#">
+          <h2>Change password</h2>
+          <label class="field"><span>New password</span><input type="password" placeholder="At least 8 characters" minlength="8"></label>
+          <label class="field"><span>Confirm new password</span><input type="password" minlength="8"></label>
+          <button class="btn btn-primary" type="submit">Update password</button>
+        </form>
+      </div>
+    </section>
+
+  </div></main>
+</div>
+</body>
+</html>

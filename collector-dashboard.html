@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.png">
+  <title>Garbage collector – BarangayEcoCare</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div>
+      <a href="index.html" class="logo"><img src="logo.png" alt="" width="40" height="40">Barangay<b>EcoCare</b></a>
+      <p class="ws">Collector workspace</p>
+    </div>
+    <nav class="nav" aria-label="Dashboard">
+      <a href="#v1" data-i="⌂">Today's route</a>
+      <a href="#v5" data-i="🔍">Observations</a>
+      <a href="#v3" data-i="🗑">History</a>
+      <a href="#v4" data-i="👤">Profile</a>
+    </nav>
+    <div class="me">
+      <div class="me-info"><span class="avatar">R</span><div>Rico Dela Peña<small>Garbage Collector</small></div></div>
+      <a href="login.html" class="btn">Log out</a>
+    </div>
+  </aside>
+
+  <main class="main"><div class="views">
+
+    <!-- 1. TODAY'S ROUTE -->
+    <section class="view" id="v1">
+      <h1>Good day, Rico</h1>
+      <p class="sub">Zone 2 (Purok 4 to 6) · Tue and Fri, 6:00 AM</p>
+      <div class="grid g4" style="margin-bottom:var(--gap)">
+        <div class="card stat"><small>Stops today</small><b>4</b></div>
+        <div class="card stat"><small>Collected</small><b>2</b></div>
+        <div class="card stat"><small>Remaining</small><b class="o">2</b></div>
+      </div>
+      <article class="card" style="margin-bottom:var(--gap)">
+        <h2>My assignment</h2>
+        <ul class="rows">
+          <li><div><strong>Assigned area</strong><small>Zone 2 · Purok 4, 5, 6and 7</small></div><span class="badge b-role">Crew B</span></li>
+          <li><div><strong>Collection schedule</strong><small>Tue and Fri · 6:00 AM</small></div></li>
+        </ul>
+        <p class="notice" style="margin:16px 0 0">You only see schedules, areas, and tasks assigned to you by the barangay.</p>
+      </article>
+      <article class="card">
+        <h2>Route checklist</h2>
+        <p class="muted" style="margin:-8px 0 14px">Tick each stop once the waste is collected.</p>
+        <ul class="rows">
+          <li><label class="route-item"><input type="checkbox" checked><div><strong>Purok 4 · Market area</strong><small>6:05 AM · 8 bins</small></div></label><span class="badge b-done">Done</span></li>
+          <li><label class="route-item"><input type="checkbox" checked><div><strong>Purok 5 · Barangay hall road</strong><small>6:25 AM · 5 bins</small></div></label><span class="badge b-done">Done</span></li>
+          <li><label class="route-item"><input type="checkbox"><div><strong>Purok 6 · Near chapel</strong><small>Next stop · 6 bins</small></div></label><span class="badge b-progress">Next</span></li>
+          <li><label class="route-item"><input type="checkbox"><div><strong>Purok 7 · Main road</strong><small>Uncollected garbage report</small></div></label><span class="badge b-pending">Pending</span></li>
+        </ul>
+        <button class="btn btn-primary" style="margin-top:22px">Submit route as completed</button>
+      </article>
+    </section>
+
+    <!-- 3. HISTORY -->
+    <section class="view" id="v3">
+      <h1>Collection history</h1>
+      <p class="sub">Your completed routes.</p>
+      <div class="card">
+        <ul class="rows">
+          <li><div><strong>Purok 4 collected</strong><small>Wed, Oct 7 · 6:40 AM · 24 bins</small></div><span class="badge b-done">Done</span></li>
+          <li><div><strong>Purok 5 collected</strong><small>Tue, Oct 6 · 6:25 AM · 30 bins</small></div><span class="badge b-done">Done</span></li>
+         </ul>
+      </div>
+    </section>
+
+    <!-- 5. SEGREGATION OBSERVATIONS -->
+    <section class="view" id="v5">
+      <h1>Segregation observations</h1>
+      <p class="sub">Record what you see at each stop and attach photo evidence.</p>
+      <div class="grid g2" style="align-items:start">
+        <form class="card" action="#">
+          <label class="field"><span>Purok</span><select><option>Purok 4</option><option selected>Purok 5</option><option>Purok 6</option></select></label>
+          <label class="field"><span>Stop</span><input value="Near chapel"></label>
+          <label class="field"><span>Collection status</span><select><option>Collected</option><option>Partly collected</option><option>Not collected (explain in notes)</option></select></label>
+          <div class="field-row">
+            <label class="field"><span>Bins properly segregated</span><input type="number" min="0" placeholder="e.g. 5"></label>
+            <label class="field"><span>Total bins checked</span><input type="number" min="0" placeholder="e.g. 6"></label>
+          </div>
+          <label class="field"><span>Notes</span><textarea placeholder="e.g. plastics mixed with food waste"></textarea></label>
+          <label class="field"><span>Photo evidence</span><input type="file" accept="image/*" required></label>
+          <p class="notice">You record observations only. Barangay staff decide whether a purok meets the target and approve any points.</p>
+          <button class="btn btn-primary btn-block" type="submit">Submit observation</button>
+        </form>
+        <article class="card"><h2>Recent submissions</h2>
+          <ul class="rows">
+            <li><div><strong>Purok 4 · Market area</strong><small>8 of 8 bins properly segregated · evidence attached</small></div><span class="badge b-progress">Submitted</span></li>
+            <li><div><strong>Purok 4 · Barangay hall road</strong><small>4 of 5 bins · plastics mixed · evidence attached</small></div><span class="badge b-progress">Submitted</span></li>
+          </ul></article>
+      </div>
+    </section>
+
+    <!-- 4. PROFILE -->
+    <section class="view" id="v4">
+      <h1>My profile</h1>
+      <p class="sub">Update your photo and the details shown on your account.</p>
+      <div class="grid g2" style="align-items:start">
+        <form class="card" action="#">
+          <h2>Account details</h2>
+          <div class="profile-head"><span class="avatar lg">R</span><button type="button" class="btn btn-sm">Add/Change photo</button><button 			  type="button" class="btn btn-sm">Remove</button><small>JPG or PNG.</small></div>
+          <label class="field"><span>First name</span><input value="Rico"></label>
+          <label class="field"><span>Last name</span><input value="Dela Peña"></label>
+	  <label class="field"><span>Email</span><input type="email" 	            		  value="rico.delapeña@email.com"></label>
+          <label class="field"><span>Mobile or telephone no.</span><input type="tel" 	     	  value="09191234567"></label>
+<label class="field"><span>Purok / Address</span><input value="Purok 5"></label>
+          <button class="btn btn-primary" type="submit">Save changes</button> <button 		  class="btn" type="reset">Undo changes</button>
+        </form>
+        <form class="card" action="#">
+          <h2>Change password</h2>
+          <label class="field"><span>New password</span><input type="password" placeholder="At least 8 characters" minlength="8"></label>
+          <label class="field"><span>Confirm new password</span><input type="password" minlength="8"></label>
+          <button class="btn btn-primary" type="submit">Update password</button>
+        </form>
+      </div>
+    </section>
+
+  </div></main>
+</div>
+</body>
+</html>
