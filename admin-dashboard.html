@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.png">
+  <title>Administrator – BarangayEcoCare</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .sidebar{overflow-y:auto}
+    .nav-label{margin:14px 14px 2px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.8}
+    .shell:has(#v7:target) .nav a[href="#v7"],.shell:has(#v8:target) .nav a[href="#v8"],
+    .shell:has(#v9:target) .nav a[href="#v9"],.shell:has(#v10:target) .nav a[href="#v10"]{background:#12295a;color:var(--orange)}
+    /* tabs inside views */
+    .ptabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 var(--gap)}
+    .ptabs button{font:inherit;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;transition:var(--ease)}
+    .ptabs button:hover{color:var(--text)}
+    .ptabs button[aria-selected="true"]{background:var(--orange);border-color:var(--orange);color:#1a1200}
+    .ptab-n{display:inline-block;min-width:1.3em;margin-left:4px;padding:0 6px;border-radius:999px;background:#1a1200;color:var(--orange);font-size:.78rem;line-height:1.5;text-align:center}
+    [role=tabpanel][hidden]{display:none}
+    .access{display:inline-flex;gap:8px;align-items:center;margin-bottom:var(--gap)}
+    /* photo evidence */
+    details.photo{margin-top:10px}
+    details.photo summary{display:inline-flex;align-items:center;gap:10px;cursor:pointer;list-style:none;font-size:.85rem;font-weight:600;color:var(--blue)}
+    details.photo summary::-webkit-details-marker{display:none}
+    details.photo summary img{width:64px;height:64px;object-fit:cover;border-radius:10px;background:#14306a;border:1px solid var(--line)}
+    details.photo .full{display:block;margin-top:10px;width:100%;max-width:420px;border-radius:12px;background:#14306a;border:1px solid var(--line)}
+    .crit-list{margin:10px 0 0;padding-left:20px;line-height:1.7}
+    .plus{color:#4be08a;font-weight:700}
+    .badge-tile{text-align:center;display:grid;gap:6px;justify-items:center;padding:20px}
+    .badge-tile .em{font-size:2rem;line-height:1}
+    .badge-tile.locked{opacity:.5}
+    .roles span small{font-weight:400;color:var(--muted);font-size:.8rem}
+    .b-bad{background:#4a1d26;color:#ffb3bf}
+    tr[hidden]{display:none}
+    /* approval dialog */
+    #appr-dialog{width:min(540px,94vw);padding:0;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--text);box-shadow:0 24px 64px rgba(0,0,0,.5)}
+    #appr-dialog::backdrop{background:rgba(0,0,0,.6)}
+    #appr-dialog form{padding:26px}
+    #appr-dialog h2{font-size:1.4rem;margin-bottom:4px}
+    #appr-dialog .btns{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div>
+      <a href="index.html" class="logo"><img src="logo.png" alt="" width="40" height="40">Barangay<b>EcoCare</b></a>
+      <p class="ws">Administrator · full access</p>
+    </div>
+    <nav class="nav" aria-label="Dashboard">
+      <a href="#v1" data-i="⌂">Overview</a>
+      <a href="#v2" data-i="✔">Account approvals <span class="count" id="nav-pending">4</span></a>
+      <span class="nav-label">System</span>
+      <a href="#v6" data-i="▦">Zones &amp; schedule</a>
+      <a href="#v7" data-i="★">Rewards &amp; rules</a>
+      <a href="#v8" data-i="ıl">Reports</a>
+      <a href="#v9" data-i="📋">Audit log</a>
+      <a href="#v10" data-i="👤">Profile</a>
+    </nav>
+    <div class="me">
+      <div class="me-info"><span class="avatar">A</span><div>Admin Cruz<small>Administrator</small></div></div>
+      <a href="login.html" class="btn">Log out</a>
+    </div>
+  </aside>
+
+  <main class="main"><div class="views">
+
+    <!-- 1. OVERVIEW -->
+    <section class="view" id="v1">
+      <h1>Admin overview</h1>
+      <p class="sub">System-wide activity for the barangay.</p>
+      <div class="grid g4" style="margin-bottom:var(--gap)">
+        <div class="card stat"><small>Registered users</small><b>412</b></div>
+        <div class="card stat"><small>Open tickets</small><b class="o">24</b></div>
+        <div class="card stat"><small>Points awarded (Oct)</small><b>8,640</b></div>
+        <div class="card stat"><small>Accounts awaiting approval</small><b class="o" id="stat-pending">4</b></div>
+      </div>
+      <div class="grid g2" style="margin-bottom:var(--gap)">
+        <article class="card"><h2>Users by role</h2>
+          <ul class="compliance">
+            <li><div><span>Residents</span><b>384</b></div><div class="bar"><i style="width:93%"></i></div></li>
+            <li><div><span>Garbage collectors</span><b>12</b></div><div class="bar"><i style="width:15%"></i></div></li>
+            <li><div><span>Barangay staff</span><b>14</b></div><div class="bar"><i style="width:17%"></i></div></li>
+            <li><div><span>Administrators</span><b>2</b></div><div class="bar"><i style="width:4%"></i></div></li>
+          </ul><small class="muted">Sample data</small></article>
+        <article class="card"><h2>Needs your attention</h2>
+          <ul class="rows">
+            <li><div><strong>New account requests</strong><small>Only you can approve or reject them</small></div><a href="#v2" class="btn btn-primary btn-sm">Review</a></li>
+            <li><div><strong>Zone 1 not collected</strong><small>Truck breakdown · reported by Crew A</small></div><span class="badge b-pending">Needs attention</span></li>
+          </ul></article>
+      </div>
+    </section>
+
+    <!-- 2. ACCOUNT APPROVALS -->
+    <section class="view" id="v2">
+      <h1>Account approvals</h1>
+      <p class="sub">Residents, garbage collectors, and barangay staff sign up on their own. Their accounts stay inactive until you approve them.</p>
+      <p class="notice"><b>Admin-only approval.</b> No one else can approve accounts, and invitation links are no longer used. Review each request, set the zone for collectors or permissions for staff, then approve.</p>
+      <div class="ptabs" id="acct-filter" role="group" aria-label="Filter accounts">
+        <button type="button" aria-selected="false" data-f="all">All</button>
+        <button type="button" aria-selected="true" data-f="pending">Pending <span class="ptab-n" id="pending-n">4</span></button>
+        <button type="button" aria-selected="false" data-f="active">Active</button>
+        <button type="button" aria-selected="false" data-f="inactive">Inactive / Rejected</button>
+      </div>
+      <div class="toolbar"><input type="search" id="acct-search" placeholder="Search name, email or role" aria-label="Search accounts"></div>
+      <div class="card table-wrap">
+        <table class="table" id="acct-table">
+          <thead><tr><th>Name</th><th>Role</th><th>Purok / Zone</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr data-status="pending" data-role="Resident" data-name="Liza Mendoza"><td><strong>Liza Mendoza</strong><br><small class="muted">liza.m@email.com · requested today</small></td><td><span class="badge b-role">Resident</span></td><td class="loc">Purok 2</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="pending" data-role="Resident" data-name="Ben Castro"><td><strong>Ben Castro</strong><br><small class="muted">ben.c@email.com · requested today</small></td><td><span class="badge b-role">Resident</span></td><td class="loc">Purok 4</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="pending" data-role="Collector" data-name="Carlo Reyes"><td><strong>Carlo Reyes</strong><br><small class="muted">carlo.r@email.com · requested yesterday</small></td><td><span class="badge b-role">Collector</span></td><td class="loc">Not assigned</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="pending" data-role="Staff" data-name="Nena Villar"><td><strong>Nena Villar</strong><br><small class="muted">nena.v@barangay.gov.ph · requested yesterday</small></td><td><span class="badge b-role">Staff</span></td><td class="loc">—</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="active" data-role="Resident" data-name="Juan Dela Cruz"><td><strong>Juan Dela Cruz</strong><br><small class="muted">juan.delacruz@email.com</small></td><td><span class="badge b-role">Resident</span></td><td class="loc">Purok 5</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="active" data-role="Resident" data-name="Ana Reyes"><td><strong>Ana Reyes</strong><br><small class="muted">ana.r@email.com</small></td><td><span class="badge b-role">Resident</span></td><td class="loc">Purok 3</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="active" data-role="Staff" data-name="Maria Santos"><td><strong>Maria Santos</strong><br><small class="muted">maria.santos@barangay.gov.ph</small></td><td><span class="badge b-role">Staff</span></td><td class="loc">—</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="active" data-role="Collector" data-name="Rico Dela Peña"><td><strong>Rico Dela Peña</strong><br><small class="muted">Crew B</small></td><td><span class="badge b-role">Collector</span></td><td class="loc">Zone 2 · Purok 4 to 6</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="active" data-role="Admin" data-name="Admin Cruz"><td><strong>Admin Cruz</strong><br><small class="muted">admin@barangay.gov.ph</small></td><td><span class="badge b-role">Admin</span></td><td class="loc">—</td><td class="st"></td><td class="ac"></td></tr>
+            <tr data-status="inactive" data-role="Resident" data-name="Pedro Lim"><td><strong>Pedro Lim</strong><br><small class="muted">pedro.l@email.com</small></td><td><span class="badge b-role">Resident</span></td><td class="loc">Purok 7</td><td class="st"></td><td class="ac"></td></tr>
+          </tbody>
+        </table>
+        <p class="muted" id="acct-empty" hidden style="padding:16px 12px 0">No accounts in this list.</p>
+      </div>
+      <article class="card" style="margin-top:var(--gap)"><h2>Role guide</h2>
+        <ul class="rows">
+          <li><div><strong>Resident</strong><small>Reports waste problems, tracks tickets, earns and redeems points.</small></div><span class="badge b-role">Sign-up · admin approves</span></li>
+          <li><div><strong>Garbage Collector</strong><small>Sees assigned zone, route checklist, and records observations.</small></div><span class="badge b-role">Sign-up · admin approves</span></li>
+          <li><div><strong>Barangay Staff</strong><small>Verifies reports, tracks collections, approves redemptions per permissions.</small></div><span class="badge b-role">Sign-up · admin approves</span></li>
+          <li><div><strong>Administrator</strong><small>Approves accounts, manages roles, rules, and has full access to all dashboards.</small></div><span class="badge b-pending">Restricted</span></li>
+        </ul></article>
+    </section>
+
+    <!-- 6. ZONES & SCHEDULE -->
+    <section class="view" id="v6">
+      <h1>Zones &amp; schedule</h1>
+      <p class="sub">Set the collection days, time, and crew for each zone.</p>
+      <div class="grid g3">
+        <form class="card zone" action="#"><span class="eyebrow">Zone 1</span><h3>Purok 1 to 3</h3>
+          <label class="field"><span>Days</span><input value="Mon and Thu"></label>
+          <label class="field"><span>Time</span><input type="time" value="06:00"></label>
+          <label class="field"><span>Crew</span><select><option selected>Crew A</option><option>Crew B</option><option>Crew C</option></select></label>
+          <button class="btn btn-primary btn-sm">Save</button></form>
+        <form class="card zone" action="#"><span class="eyebrow">Zone 2</span><h3>Purok 4 to 6</h3>
+          <label class="field"><span>Days</span><input value="Tue and Fri"></label>
+          <label class="field"><span>Time</span><input type="time" value="06:00"></label>
+          <label class="field"><span>Crew</span><select><option>Crew A</option><option selected>Crew B</option><option>Crew C</option></select></label>
+          <button class="btn btn-primary btn-sm">Save</button></form>
+        <form class="card zone" action="#"><span class="eyebrow">Zone 3</span><h3>Purok 7 to 9</h3>
+          <label class="field"><span>Days</span><input value="Wed and Sat"></label>
+          <label class="field"><span>Time</span><input type="time" value="06:00"></label>
+          <label class="field"><span>Crew</span><select><option>Crew A</option><option>Crew B</option><option selected>Crew C</option></select></label>
+          <button class="btn btn-primary btn-sm">Save</button></form>
+      </div>
+    </section>
+
+    <!-- 7. REWARDS & RULES -->
+    <section class="view" id="v7">
+      <h1>Rewards &amp; rules</h1>
+      <p class="sub">Manage incentives, point values, and badges. Rewards are point-based only.</p>
+      <div class="toolbar"><button class="btn btn-primary">Add reward</button></div>
+      <div class="card table-wrap">
+        <table class="table">
+          <thead><tr><th>Reward</th><th>Points</th><th>Stock</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Grocery pack</strong></td><td class="big-num" style="font-size:1.1rem">500</td><td>20</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button><button class="btn btn-sm">Disable</button></div></td></tr>
+            <tr><td><strong>Reusable eco bag</strong></td><td class="big-num" style="font-size:1.1rem">200</td><td>85</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button><button class="btn btn-sm">Disable</button></div></td></tr>
+            <tr><td><strong>Seedling kit</strong></td><td class="big-num" style="font-size:1.1rem">150</td><td>40</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button><button class="btn btn-sm">Disable</button></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <article class="card" style="margin-top:var(--gap)"><h2>Community points (purok-wide)</h2>
+        <p class="notice">On each collection schedule: perfect purok earns the top amount, the purok closest to perfect earns the middle amount, and the rest earn the base amount, per resident.</p>
+        <form action="#">
+          <div class="grid g3">
+            <label class="field"><span>Perfect purok (points each)</span><input type="number" min="0" value="15"></label>
+            <label class="field"><span>Closest to perfect (points each)</span><input type="number" min="0" value="10"></label>
+            <label class="field"><span>All other puroks (points each)</span><input type="number" min="0" value="5"></label>
+          </div>
+          <button class="btn btn-primary" type="submit">Save community rules</button>
+        </form></article>
+      <article class="card" style="margin-top:var(--gap)"><h2>Report rewards (individual)</h2>
+        <p class="notice">Points are given only after Barangay Staff verify the report.</p>
+        <form action="#">
+          <div class="grid g3">
+            <label class="field"><span>Illegal dumping (points)</span><input type="number" min="0" value="15"></label>
+            <label class="field"><span>Overflowing garbage (points)</span><input type="number" min="0" value="15"></label>
+            <label class="field"><span>Duplicate window (hours, same location)</span><input type="number" min="0" value="48"></label>
+            <label class="field"><span>Welcome bonus (one time, first sign-in)</span><input type="number" min="0" value="20"></label>
+          </div>
+          <div class="toolbar"><label class="check"><input type="checkbox" checked disabled> No points for pending or rejected reports</label><label class="check"><input type="checkbox" checked> Block duplicate reports of the same incident</label><label class="check"><input type="checkbox" checked> Record every staff and admin action in the audit log</label></div>
+          <button class="btn btn-primary" type="submit">Save report rules</button>
+        </form></article>
+      <article class="card table-wrap" style="margin-top:var(--gap)"><h2>Badges</h2>
+        <table class="table">
+          <thead><tr><th>Badge</th><th>Requirement</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Eco Helper</strong></td><td>Reach 100 points</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button></div></td></tr>
+            <tr><td><strong>First Report</strong></td><td>1 verified report</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button></div></td></tr>
+            <tr><td><strong>4-week Streak</strong></td><td>Segregate 4 weeks in a row</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button></div></td></tr>
+            <tr><td><strong>Community Hero</strong></td><td>5 community rewards</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button></div></td></tr>
+            <tr><td><strong>Top Reporter</strong></td><td>10 verified reports</td><td><span class="badge b-done">Active</span></td><td><div class="acts"><button class="btn btn-sm">Edit</button></div></td></tr>
+          </tbody>
+        </table><button class="btn btn-primary" style="margin-top:16px">Add badge</button></article>
+    </section>
+
+    <!-- 8. REPORTS -->
+    <section class="view" id="v8">
+      <h1>Reports</h1>
+      <p class="sub">Compliance and ticket analytics.</p>
+      <div class="grid g2">
+        <article class="card"><h2>Segregation compliance by purok</h2>
+          <ul class="compliance">
+            <li><div><span>Purok 5</span><b>94%</b></div><div class="bar"><i style="width:94%"></i></div></li>
+            <li><div><span>Purok 2</span><b>89%</b></div><div class="bar"><i style="width:89%"></i></div></li>
+            <li><div><span>Purok 7</span><b>85%</b></div><div class="bar"><i style="width:85%"></i></div></li>
+            <li><div><span>Purok 4</span><b>78%</b></div><div class="bar"><i style="width:78%"></i></div></li>
+            <li><div><span>Purok 1</span><b>72%</b></div><div class="bar"><i style="width:72%"></i></div></li>
+          </ul><small class="muted">Sample data</small></article>
+        <article class="card"><h2>Tickets by status</h2>
+          <ul class="compliance">
+            <li><div><span>Pending</span><b>9</b></div><div class="bar"><i style="width:30%"></i></div></li>
+            <li><div><span>In Progress</span><b>15</b></div><div class="bar"><i style="width:50%"></i></div></li>
+            <li><div><span>Resolved</span><b>94</b></div><div class="bar"><i style="width:100%"></i></div></li>
+          </ul>
+          <button class="btn" style="margin-top:8px">Export CSV</button></article>
+      </div>
+    </section>
+
+    <!-- 9. AUDIT LOG -->
+    <section class="view" id="v9">
+      <h1>Audit log</h1>
+      <p class="sub">Every staff and admin action that affects points, accounts, or rules.</p>
+      <div class="toolbar"><input type="search" placeholder="Search by person or action"><button class="btn">Export CSV</button></div>
+      <div class="card table-wrap">
+        <table class="table">
+          <thead><tr><th>When</th><th>Who</th><th>Action</th><th>Details</th></tr></thead>
+          <tbody>
+            <tr><td>Oct 8 · 8:10 AM</td><td>Admin Cruz<br><small class="muted">Admin</small></td><td>Approved account</td><td>Juan Dela Cruz · Resident</td></tr>
+            <tr><td>Oct 7 · 9:12 AM</td><td>Maria Santos<br><small class="muted">Staff</small></td><td>Verified report +15</td><td>Illegal dumping, Riverside, Purok 3 (Ana R.)</td></tr>
+            <tr><td>Oct 7 · 8:40 AM</td><td>Maria Santos<br><small class="muted">Staff</small></td><td>Reviewed collector report</td><td>Purok 4, Market area, 8 of 8 bins</td></tr>
+            <tr><td>Oct 6 · 4:05 PM</td><td>Admin Cruz<br><small class="muted">Admin</small></td><td>Changed rule</td><td>Community points per resident: 8 to 10</td></tr>
+            <tr><td>Oct 6 · 2:30 PM</td><td>Maria Santos<br><small class="muted">Staff</small></td><td>Marked as duplicate</td><td>Overflowing garbage, Purok 5 (no points)</td></tr>
+            <tr><td>Oct 5 · 6:50 AM</td><td>Rico Dela Peña<br><small class="muted">Collector</small></td><td>Submitted observation</td><td>Purok 5, Near chapel, 5 of 6 bins, evidence attached</td></tr>
+          </tbody>
+        </table>
+        <div id="audit-new"></div>
+      </div>
+    </section>
+
+    <!-- 10. PROFILE -->
+    <section class="view" id="v10">
+      <h1>My profile</h1>
+      <p class="sub">Update your photo and the details shown on your account.</p>
+      <div class="grid g2" style="align-items:start">
+        <form class="card" action="#">
+          <h2>Account details</h2>
+          <div class="profile-head"><span class="avatar lg">A</span><button type="button" class="btn btn-sm">Add/Change photo</button><button type="button" class="btn btn-sm">Remove</button><small>JPG or PNG.</small></div>
+          <label class="field"><span>First name</span><input value="Admin"></label>
+          <label class="field"><span>Last name</span><input value="Cruz"></label>
+          <label class="field"><span>Email</span><input type="email" value="admin@barangay.gov.ph"></label>
+          <button class="btn btn-primary" type="submit">Save changes</button> <button class="btn" type="reset">Undo changes</button>
+        </form>
+        <form class="card" action="#">
+          <h2>Change password</h2>
+          <label class="field"><span>New password</span><input type="password" placeholder="At least 8 characters" minlength="8"></label>
+          <label class="field"><span>Confirm new password</span><input type="password" minlength="8"></label>
+          <button class="btn btn-primary" type="submit">Update password</button>
+        </form>
+      </div>
+    </section>
+
+  </div></main>
+</div>
+
+<!-- Approval dialog -->
+<dialog id="appr-dialog" aria-labelledby="appr-title">
+  <form method="dialog" id="appr-form">
+    <h2 id="appr-title">Approve account</h2>
+    <p class="muted" id="appr-sub" style="margin-bottom:18px"></p>
+    <label class="field" id="appr-zone" hidden><span>Assigned zone (collector)</span>
+      <select><option>Zone 1 · Purok 1 to 3</option><option>Zone 2 · Purok 4 to 6</option><option>Zone 3 · Purok 7 to 9</option></select></label>
+    <fieldset id="appr-perms" hidden style="border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:0 0 16px">
+      <legend class="muted" style="padding:0 8px">Staff permissions</legend>
+      <div class="toolbar" style="margin:0"><label class="check"><input type="checkbox" checked> Waste reports</label><label class="check"><input type="checkbox" checked> Collection schedules</label><label class="check"><input type="checkbox" checked> Resident concerns</label><label class="check"><input type="checkbox"> Redemptions</label><label class="check"><input type="checkbox"> Community rewards (verify purok results)</label></div>
+    </fieldset>
+    <p class="notice" id="appr-note" style="margin-bottom:0"></p>
+    <div class="btns"><button type="button" class="btn" id="appr-cancel">Cancel</button><button type="button" class="btn btn-primary" id="appr-ok">Approve account</button></div>
+  </form>
+</dialog>
+
+<script>
+(function () {
+  /* ---------- Tabs inside role dashboards ---------- */
+  [].forEach.call(document.querySelectorAll('[data-tabs]'), function (group) {
+    var btns = [].slice.call(group.querySelectorAll('[data-tab]'));
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        btns.forEach(function (x) {
+          var on = x === b;
+          x.setAttribute('aria-selected', on ? 'true' : 'false');
+          document.getElementById('p-' + x.getAttribute('data-tab')).hidden = !on;
+        });
+      });
+    });
+  });
+
+  /* ---------- Account approvals (admin only) ---------- */
+  var table = document.getElementById('acct-table');
+  var rows = [].slice.call(table.querySelectorAll('tbody tr'));
+  var filter = 'pending', query = '';
+  var BADGE = { pending: ['b-pending', 'Pending approval'], active: ['b-done', 'Active'], inactive: ['b-off', 'Inactive'], rejected: ['b-bad', 'Rejected'] };
+
+  function drawRow(tr) {
+    var s = tr.dataset.status, b = BADGE[s];
+    tr.querySelector('.st').innerHTML = '<span class="badge ' + b[0] + '">' + b[1] + '</span>';
+    var a = '';
+    if (s === 'pending') a = '<button class="btn btn-sm" data-act="reject">Reject</button><button class="btn btn-primary btn-sm" data-act="review">Review &amp; approve</button>';
+    else if (s === 'active') a = tr.dataset.role === 'Admin' ? '<span class="muted">Protected</span>' : '<button class="btn btn-sm" data-act="deactivate">Deactivate</button>';
+    else if (s === 'inactive') a = '<button class="btn btn-sm" data-act="reactivate">Reactivate</button>';
+    else if (s === 'rejected') a = '<button class="btn btn-sm" data-act="reopen">Move back to pending</button>';
+    tr.querySelector('.ac').innerHTML = '<div class="acts">' + a + '</div>';
+  }
+  function recount() {
+    var n = rows.filter(function (r) { return r.dataset.status === 'pending'; }).length;
+    ['nav-pending', 'stat-pending', 'pending-n'].forEach(function (id) { document.getElementById(id).textContent = n; });
+    document.getElementById('nav-pending').style.display = n ? '' : 'none';
+  }
+  function apply() {
+    var shown = 0;
+    rows.forEach(function (r) {
+      var s = r.dataset.status;
+      var okF = filter === 'all' || s === filter || (filter === 'inactive' && s === 'rejected');
+      var okQ = !query || r.textContent.toLowerCase().indexOf(query) > -1;
+      r.hidden = !(okF && okQ);
+      if (!r.hidden) shown++;
+    });
+    document.getElementById('acct-empty').hidden = shown > 0;
+  }
+  function log(text, detail) {
+    var d = document.getElementById('audit-new');
+    var p = document.createElement('p');
+    p.className = 'muted'; p.style.cssText = 'padding:12px;border-top:1px solid var(--line);margin:0';
+    p.textContent = 'Just now · Admin Cruz · ' + text + ' · ' + detail;
+    d.insertBefore(p, d.firstChild);
+  }
+  rows.forEach(drawRow); recount(); apply();
+
+  [].forEach.call(document.querySelectorAll('#acct-filter [data-f]'), function (b) {
+    b.addEventListener('click', function () {
+      filter = b.getAttribute('data-f');
+      [].forEach.call(document.querySelectorAll('#acct-filter [data-f]'), function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+      apply();
+    });
+  });
+  document.getElementById('acct-search').addEventListener('input', function (e) { query = e.target.value.trim().toLowerCase(); apply(); });
+
+  var dlg = document.getElementById('appr-dialog'), current = null;
+  table.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-act]'); if (!btn) return;
+    var tr = btn.closest('tr'), act = btn.getAttribute('data-act'), name = tr.dataset.name;
+    if (act === 'review') {
+      current = tr;
+      var role = tr.dataset.role;
+      document.getElementById('appr-title').textContent = 'Approve ' + name;
+      document.getElementById('appr-sub').textContent = 'Requested role: ' + role + ' · ' + tr.querySelector('.loc').textContent;
+      document.getElementById('appr-zone').hidden = role !== 'Collector';
+      document.getElementById('appr-perms').hidden = role !== 'Staff';
+      document.getElementById('appr-note').textContent = role === 'Resident'
+        ? 'The resident can log in right after you approve and receives the one-time welcome bonus.'
+        : 'Make sure this person is really a ' + (role === 'Collector' ? 'garbage collector' : 'barangay staff member') + ' before approving.';
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      return;
+    }
+    var map = { reject: 'rejected', deactivate: 'inactive', reactivate: 'active', reopen: 'pending' };
+    tr.dataset.status = map[act]; drawRow(tr); recount(); apply();
+    log({ reject: 'Rejected account', deactivate: 'Deactivated account', reactivate: 'Reactivated account', reopen: 'Moved account back to pending' }[act], name);
+  });
+  document.getElementById('appr-ok').addEventListener('click', function () {
+    if (!current) return;
+    if (current.dataset.role === 'Collector') current.querySelector('.loc').textContent = document.querySelector('#appr-zone select').value;
+    current.dataset.status = 'active'; drawRow(current); recount(); apply();
+    log('Approved account', current.dataset.name + ' · ' + current.dataset.role);
+    dlg.close(); current = null;
+  });
+  document.getElementById('appr-cancel').addEventListener('click', function () { dlg.close(); });
+})();
+</script>
+</body>
+</html>
